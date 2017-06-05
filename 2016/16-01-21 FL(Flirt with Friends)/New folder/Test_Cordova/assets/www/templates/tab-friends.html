@@ -1,0 +1,18 @@
+<ion-view view-title="Friends">
+    <ion-content>
+        <ion-list ng-show="vm.friends">
+            <ion-item class="item-icon-left" ng-repeat="friend in vm.friends" type="item-text-wrap" ng-click="vm.openChatRoom(friend)">
+                <p>
+                    &nbsp;&nbsp;&nbsp; {{friend.username}}
+                </p>
+            </ion-item>
+        </ion-list>
+
+        <ion-list ng-hide="vm.friends.length">
+            <ion-item class="textCenter">
+                <i class="icon ion-loading-c"></i> Loading Friends...
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

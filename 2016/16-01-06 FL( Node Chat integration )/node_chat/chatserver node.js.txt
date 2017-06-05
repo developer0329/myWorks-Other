@@ -1,0 +1,14 @@
+putty
+
+root
+pimpernel
+****************************************
+plesk
+https://h2468260.stratoserver.net:8443/
+admin
+005571glenn
+********************************************
+ftp
+Domain name *   www.kemboy.com
+Username    *   kemboy
+Password    *   Bijp5*90

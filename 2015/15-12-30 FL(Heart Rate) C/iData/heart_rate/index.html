@@ -1,0 +1,120 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled Document</title>
+<link href="boilerplate.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- 
+To learn more about the conditional comments around the html tags at the top of the file:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+
+Do the following if you're using your customized build of modernizr (http://www.modernizr.com/):
+* insert the link to your js here
+* remove the link below to the html5shiv
+* add the "no-js" class to the html tags at the top
+* you can also remove the link to respond.min.js if you included the MQ Polyfill in your modernizr build 
+-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="respond.min.js"></script>
+</head>
+<body>
+<div class="gridContainer clearfix">
+
+ <!-- <div id="div1" class="fluid">Use Insert Panel for additional Fluid Grid Layout Elements. Note: All Fluid Layout tags must be contained within the "gridContainer" div tag.</div>-->
+ <header>
+<div class="hdr_lft"></div>
+<div class="hdr_cntr">Heart <span> Rate</span></div>
+<div class="hdr_rht"></div>
+<div class="clear"></div>
+</header>
+
+
+<div class="topmenubg">
+<nav>
+<ul class="topmenu">
+<li><a href="javascript:void(0)"  id="measure_id1" onClick="ChangeTab('measure_id');" class="menu_select">Measure</a></li>
+<li ><a href="javascript:void(0)" class="menu_unselect" id="statistics_id1" onClick="ChangeTab('statistics_id');" style="color:#8a909c;">Statistics</a></li>
+</ul>
+</nav> 
+<div class="clear"></div>
+</div>
+
+
+<div  style="display:block;" id="measure_id">
+<section>
+<div><img src="images/heart.jpg"></div>
+</section>
+<section>
+<div style="background:#fff;" >
+<div class="seconds">0<span>72</span></div>
+<div class="beats">beats per minute</div>
+<div><img src="images/wave.png"></div>
+</div>
+</section>
+
+<footer>
+<div class="ftr1_lft"></div>
+<div class="ftr1_cntr">&nbsp;</div>
+<div class="ftr1_rht"></div>
+<div class="clear"></div>
+</footer>
+</div>
+</div>
+<div style="display:none;" id="statistics_id">
+<div class="gridContainer clearfix">
+<section>
+
+<div class="topmenubg">
+<nav>
+<ul class="topmenu_btm">
+<li><a href="#" class="menubtm_select">Day</a></li>
+<li ><a href="#" class="menubtm_unselect">Month</a></li>
+<li ><a href="#" class="menubtm_unselect">Year</a></li>
+</ul>
+</nav>
+<div class="clear"></div>
+</div>
+
+
+<div ><img src="images/cntr_img.jpg" /></div>
+</section>
+<footer>
+<div class="ftr_cont">
+<div class="ftr_lft"></div>
+<div class="ftr_cntr">
+<div class="min_cont">
+<p class="rage_txt">Min</p>
+<p class="point_txt">50</p>
+</div>
+<div class="min_cont">
+<p class="rage_txt">Max</p>
+<p class="point_txt">157</p>
+</div>
+<div class="min_cont">
+<p class="rage_txt">Avg</p>
+<p class="point_txt">81</p>
+</div>
+</div>
+<div class="ftr_rht"></div>
+<div class="clear"></div>
+</div>
+</footer>
+</div>
+ </div>
+ 
+ 
+
+</div>
+</body>
+</html>

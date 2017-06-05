@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>OKgrl</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/kkb.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="js/sketch.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="left">
+        <div id="SketchColors">
+            <a href="#SketchPad" data-color="black"><div class="circle"><div class="black"></div></div></a>
+            <a href="#SketchPad" data-color="white" ><div class="circle"><div class="white"></div></div></a>
+            <a href="#SketchPad" data-color="magenta"><div class="circle"><div class="pink"></div></div></a>
+            <a href="#SketchPad" data-color="red"><div class="circle"><div class="red"></div></div></a>
+            <a href="#SketchPad" data-color="#ffe401"><div class="circle"><div class="yellow"></div></div></a>
+            <a href="#SketchPad" data-color="turquoise"><div class="circle"><div class="cyan"></div></div></a>
+            <a href="#SketchPad" data-color="#1534c9" ><div class="circle"><div class="blue"></div></div></a>
+                
+		</div>
+            <div id="SketchTools">
+                <a href="#SketchPad" data-size="9" data-tool='marker'><img class="brush" src="imgokgrl/kkb/tools/brush-pink.png"/></a>
+                <a href="#SketchPad" data-size="7" data-tool='marker'><img class="marker" src="imgokgrl/kkb/tools/marker-pink.png"></a>
+                <a href="#SketchPad" data-size="4" data-tool='marker'><img class="pen" src="imgokgrl/kkb/tools/pen-pink.png"/></a>
+                <a href="#SketchPad" data-size="3" data-tool='marker'><img class="pencil" src="imgokgrl/kkb/tools/pencil-pink.png"/></a>		
+                <a href='#SketchPad' data-tool='eraser' data-size="15"><img class="eraser" src="imgokgrl/kkb/eraser.png"/></a>
+            </div>
+            <div id='SketchPad-Content' width="550" height="700"></div>
+            <canvas id='SketchPad' width="550" height="700"></canvas>
+
+            <div class="backgrounds">
+                <img class="violet" src="imgokgrl/kkb/violetp.png">
+                <img class="green" src="imgokgrl/kkb/greenp.png">
+                <img class="azul" src="imgokgrl/kkb/bluep.png">
+                <img class="pinky" src="imgokgrl/kkb/pinkp.png">
+            </div>
+
+			<div class="Objects">
+				<a id="objContent">
+					<img src="imgokgrl/kkb/object0.png">
+					<img class="sticker" id="sticker1" src="imgokgrl/kkb/sticker1.png" style="left: 100px; top: 250px;">
+					<img class="sticker" id="sticker6" src="imgokgrl/kkb/sticker6.png" style="height: 200px; left: 10px;">				 
+					<img class="sticker" id="sticker2" src="imgokgrl/kkb/sticker2.png" style="left:110px;">
+					<img class="sticker" id="sticker9" src="imgokgrl/kkb/sticker9.png" style="left:120px;bottom:20px">
+					<img class="sticker" id="sticker8" src="imgokgrl/kkb/sticker8.png" style="top: 420px;left: 10px;">	
+					<img class="sticker" id="sticker5" src="imgokgrl/kkb/sticker5.png" style="left: 220px;">
+					<img class="sticker" id="sticker4" src="imgokgrl/kkb/sticker4.png" style="height: 200px;top:250px; right:20px;">
+					<img class="sticker" id="sticker3" src="imgokgrl/kkb/sticker3.png" style="left:220px; top: 420px;">
+					<img class="sticker" id="sticker10" src="imgokgrl/kkb/sticker10.png" style="top: 300px; right: 100px;">
+					<img class="sticker" id="sticker7" src="imgokgrl/kkb/sticker7.png" style="top:350px; left:80px;">					
+				</a>
+			</div>
+        </div>
+
+        <div class="right">
+            <div class="ipad">
+                <img src="imgokgrl/kkb/ipad.png">
+                <canvas id="SketchPad2" width="161" height="220" style="position: absolute; z-index: -1; top: 266px; left: 131px; -webkit-transform: rotate(-35deg) skewY(1.5deg);"/>
+            </div>
+        </div>
+
+        <script>
+			$(document).ready(function() {
+				/*sketchpad*/
+				$('#SketchPad').sketch({defaultColor: "magenta"});
+				$('#SketchPad').sketch({defaultTool: ""});
+				var sourceCanvas = document.getElementById("SketchPad");
+				var sourceContext = sourceCanvas.getContext('2d');
+				var $canvas = $("#SketchPad");
+				
+				var canvasOffset=$canvas.offset();
+				var offsetX=canvasOffset.left;
+				var offsetY=canvasOffset.top;
+
+				// Sticker drawing
+				var stickerDrawing = false,
+					sticker = '';
+
+				var imageStickers = [];
+
+				var destCanvas = document.getElementById('SketchPad2');
+				var destContex = destCanvas.getContext('2d');
+				
+				var imageObj = new Image();
+					
+				imageObj.src = 'imgokgrl/kkb/kerokero.png';
+				imageObj.onload = function() {
+					sourceContext.drawImage(imageObj, 20, 20);
+					destContex.drawImage(sourceCanvas, 0, 0, sourceCanvas.width, sourceCanvas.height, 5, 0, destCanvas.width-5, destCanvas.height);
+				};
+						
+				for(var i = 1; i <= 10; i ++) {
+					var image = new Image();
+					image.src = "imgokgrl/kkb/sticker" + i + ".png";
+					
+					imageStickers["sticker" + i] = image;
+					// var $imageElm = $("#sticker" + i);
+					// console.log('imagelement');
+					// console.log($imageElm);
+					// $imageElm.draggable({ helper: 'clone'});
+					// $imageElm.data("image", image);
+				}
+				
+				// function dragDrop(e,ui){
+				// 	var element=ui.draggable;
+				// 	var data=element.data("url");
+				// 	var x=parseInt(ui.offset.left-offsetX);
+				// 	var y=parseInt(ui.offset.top-offsetY);
+				// 	sourceContext.drawImage(element.data("image"),x-1,y);
+					
+				// 	// draw the source canvas image to the destCanvas
+				// 	destContex.drawImage(sourceCanvas, 0, 0, sourceCanvas.width, sourceCanvas.height, 0, 0, destCanvas.width, destCanvas.height);
+				// }
+	
+				// $canvas.droppable({
+				// 	drop:dragDrop,
+				// });
+
+				var  color = "magenta";
+				var  tool = "";
+					/* tools */
+					$( "#SketchTools a" ).click(function(){
+					   $(this).addClass('active').siblings().removeClass('active'); 
+					});
+				  
+					$('#SketchColors a div:not(.circle)').click(function(){
+						color= $(this).attr('class');
+						var filename = (color == 'magenta') ? 'pink' : color;
+
+						$('.brush').attr('src', 'imgokgrl/kkb/tools/brush-'+filename+'.png');
+						$('.marker').attr('src', 'imgokgrl/kkb/tools/marker-'+filename+'.png');
+						$('.pen').attr('src', 'imgokgrl/kkb/tools/pen-'+filename+'.png');
+						$('.pencil').attr('src', 'imgokgrl/kkb/tools/pencil-'+filename+'.png');
+					});
+
+					$('#SketchTools a img').click(function(){
+						tool= $(this).attr('class');
+
+						var filename = (color == 'magenta') ? 'pink' : color;
+
+						$('#SketchPad').sketch().set('drawingMode', true);
+						stickerDrawing = false;
+
+						if(tool != 'eraser') {
+							$('#SketchPad').css('cursor', 'url(imgokgrl/kkb/cursors/' + tool + '-' + filename + '.png), auto');
+						} else {
+							$('#SketchPad').css('cursor', 'url(imgokgrl/kkb/cursors/' + tool + '.png), auto');
+						}
+					});
+				  
+				$("img.sticker").on('click', function() {
+					var srcUrl = $(this).attr('id');
+					sticker = srcUrl;
+					stickerDrawing = true;
+					$('#SketchPad').css('cursor', 'url(imgokgrl/kkb/sticker-cursors/' + srcUrl + '.png), auto');
+					$('#SketchPad').sketch().set('drawingMode', false);
+				});
+
+				$("#SketchPad").on('click', function(e) {
+					if(stickerDrawing) {
+						
+				        var posX = $(this).offset().left,
+				            posY = $(this).offset().top;
+				        var x = e.pageX - posX,
+				        	y = e.pageY - posY;
+				        var image = imageStickers[sticker];
+
+				        sourceContext.drawImage(image, x - 1, y, image.width / 2.0, image.height / 2);
+
+				        // ok, copy the image to the destination
+					}
+				});
+
+				 /*backgrounds*/
+				$(function() {
+					$('.green').click(function() {
+						$('#SketchPad').css('background','-webkit-linear-gradient(top, #0cff9b 0%,#c9ffe8 52%,#0cff9b 100%)' );
+						$('#SketchPad2').css('background','-webkit-linear-gradient(top, #0cff9b 0%,#c9ffe8 52%,#0cff9b 100%)' );
+						$('#SketchPad').hide();
+						$('#SketchPad').width(550);
+						$('#SketchPad').slideDown(300, function(){
+							$('#SketchPad-Content').css('background','-webkit-linear-gradient(top, #0cff9b 0%,#c9ffe8 52%,#0cff9b 100%)' );
+						});
+					});
+				});
+				$(function() {
+					$('.pinky').click(function() {				   
+						$('#SketchPad').css('background','-webkit-linear-gradient(top, #ff7cd8 0%,#f9d4f9 52%,#ff7cd8 100%)' );
+						$('#SketchPad2').css('background','-webkit-linear-gradient(top, #ff7cd8 0%,#f9d4f9 52%,#ff7cd8 100%)' );
+						$('#SketchPad').hide();
+						$('#SketchPad').width(550);
+						$('#SketchPad').slideDown(300, function(){
+							$('#SketchPad-Content').css('background','-webkit-linear-gradient(top, #ff7cd8 0%,#f9d4f9 52%,#ff7cd8 100%)' );
+						});
+					});
+				});
+				$(function() {
+					$('.azul').click(function() {
+						$('#SketchPad').css('background','-webkit-linear-gradient(top, #0ac2ff 0%,#ccf3ff 52%,#0ac2ff 100%)');
+						$('#SketchPad2').css('background','-webkit-linear-gradient(top, #0ac2ff 0%,#ccf3ff 52%,#0ac2ff 100%)');
+						$('#SketchPad').hide();
+						$('#SketchPad').width(550);
+						$('#SketchPad').slideDown(300, function(){
+				            $('#SketchPad-Content').css('background','-webkit-linear-gradient(top, #0ac2ff 0%,#ccf3ff 52%,#0ac2ff 100%)' );
+				        });
+						
+					});
+				});
+				$(function() {
+					$('.violet').click(function() {
+						$('#SketchPad').css('background','-webkit-linear-gradient(top, #9306ff 0%,#ead1ff 52%,#9306ff 100%)' );
+						$('#SketchPad2').css('background','-webkit-linear-gradient(top, #9306ff 0%,#ead1ff 52%,#9306ff 100%)' );
+						$('#SketchPad').hide();
+						$('#SketchPad').width(550);
+						$('#SketchPad').slideDown(300, function(){
+							$('#SketchPad-Content').css('background','-webkit-linear-gradient(top, #9306ff 0%,#ead1ff 52%,#9306ff 100%)' );
+						});
+					});
+				});
+				
+				$( "#objContent" ).mouseover(function() {
+					$(".Objects").height(541).css({
+						cursor: "auto"
+					});			  
+				});
+				
+				$( "#objContent" ).mouseout(function() {
+					$(".Objects").height(140).css({
+						cursor: "auto"
+					});
+					
+				});
+			
+            });		
+		</script>
+    </body>
+</html>

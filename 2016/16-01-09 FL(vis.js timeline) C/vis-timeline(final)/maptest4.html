@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css" />
+    <link href="app.css" rel="stylesheet" type="text/css" /> 
+    <script src="vis/dist/vis.js"></script> 
+  </head>
+
+  <body>
+    <br><center><h3>Timeline Handshake</h3><br>
+
+    <div> 
+      <div class="menu">
+  		  <input type="button" id="zoomIn" value="Zoom in"/>
+  		  <input type="button" id="zoomOut" value="Zoom out"/>
+  	    <input type="button" id="moveLeft" value="Move left"/>
+  		  <input type="button" id="moveRight" value="Move right"/>
+      </div>
+    </div><br>
+   
+    <div id="visualization"></div> 
+
+    <script type="text/javascript"> 
+      var groups = ([
+        { id: 1, content: 'From port:49528 to port:80' },
+        { id: 2, content: 'From port:80 to port:49528' }
+      ]);
+
+      // DOM element where the Timeline will be attached 
+      var container = document.getElementById('visualization'); 
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([ 
+        {id:1, group: 1, editable: true, content: 'Packet:327<br>POST', start: 'Jul 08 2015 08:11:12.326'},
+        {id:2, group: 2, editable: true, content: 'Packet:339<br>POST', start: 'Jul 08 2015 08:11:12.515', end: 'Jul 08 2015 08:11:12.525', title: 'Packet:339 sent:2015-07-08 08:11:12.515984'},
+        {id:3, group: 1, editable: true, content: 'Packet:384<br>POST', start: 'Jul 08 2015 08:11:13.549', end: 'Jul 08 2015 08:11:13.599', title: 'Packet:384 sent:2015-07-08 08:11:13.59925'}
+        ]);
+      // Configuration for the Timeline
+      // var options = { stack: true, margin: {item: 0},	orientation: 'both', width: '100%', timeAxis: {scale: 'millisecond', step: 1} };
+      var options = {stack: true, margin: {item: 0},  orientation: 'both', width: '100%'};
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, groups, options); 
+
+      function move (percentage) { 
+        var range = timeline.getWindow(); 
+        var interval = range.end - range.start; 
+        timeline.setWindow({ 
+          start: range.start.valueOf() - interval * percentage, 
+          end:   range.end.valueOf()   - interval * percentage 
+        }); 
+      } 
+        /** 
+         * Zoom the timeline a given percentage in or out 
+         * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in) 
+         */ 
+      function zoom (percentage) { 
+        var range = timeline.getWindow(); 
+        var interval = range.end - range.start; 
+        timeline.setWindow({ 
+          start: range.start.valueOf() - interval * percentage, 
+          end:   range.end.valueOf()   + interval * percentage 
+        }); 
+      } 
+       // attach events to the navigation buttons
+      document.getElementById('zoomIn').onclick    = function () { zoom(-0.2); }; 
+      document.getElementById('zoomOut').onclick   = function () { zoom( 0.2); }; 
+      document.getElementById('moveLeft').onclick  = function () { move( 0.2); }; 
+      document.getElementById('moveRight').onclick = function () { move(-0.2); }; 
+    </script>
+  </body>
+</html>

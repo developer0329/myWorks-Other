@@ -1,0 +1,48 @@
+body, html
+{
+  font-family: arial, sans-serif;
+  font-size: 10pt;
+}
+
+.vis-item {
+  border-color: black;
+  background-color: yellow;
+  color: black;
+}
+
+#visualization {
+  position: relative;
+} 
+
+.menu {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  z-index: 9999;
+}
+
+
+td.boldleft 
+{
+  font-weight: bold;
+  font-size: 10px;
+  color: #000000;
+  background-color: #ffffff;
+  text-align: left
+}
+.vis-time-axis .vis-grid.vis-odd { background: #f5f5f5; }
+.vis-item.vis-dot.red 
+{
+  border-radius: 4px;
+  border-width: 4px;
+  background-color: red;
+  border-color: red;
+} 
+div.vis-editable, div.vis-editable.vis-selected { background-color: #FFFACD; border-color: black; color: black; } 
+div.vis-readonly, div.vis-readonly.vis-selected { background-color: #FFC125; border-color: black; color: black; }
+
+.vis-item .vis-item-overflow
+{
+  overflow: visible;
+}

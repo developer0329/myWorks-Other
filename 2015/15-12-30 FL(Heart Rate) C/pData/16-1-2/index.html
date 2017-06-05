@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Test Page</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+  	<div class="expanded row">
+		<div class="top-bar">
+			Heart <span>Rate</span>
+		</div>
+		<ul class="tabs" data-tabs="uzdf8j-tabs" id="example-tabs">
+			<li class="tabs-title is-active" role="presentation"><a href="#panel1" aria-selected="true" role="tab" aria-controls="panel1" id="panel1-label">Measure</a></li>
+			<li class="tabs-title" role="presentation"><a href="#panel2" role="tab" aria-controls="panel2" aria-selected="false" id="panel2-label">Statistics</a></li>
+		</ul>
+		<div class="tabs-content" data-tabs-content="example-tabs">
+			<div class="tabs-panel is-active" id="panel1">
+				<div class="row">
+					<center><img src="images/heart.jpg" id="heart-img"></center>
+				</div>
+				<div class="row">
+					<h1><p class="text-center">0<span>72</span></p></h1>
+				</div>
+				<div class="row">
+					<h2><p class="text-center">beats per minute</p></h2>
+				</div>
+				<div class="row">
+					<center><img src="images/wave.png" id="wave-img"></center>
+				</div>
+			</div>
+			<div class="tabs-panel" id="panel2">
+				<div class="row">
+					<div class="expanded button-group">
+						<a class="button date-btn" id="day-btn" aria-selected="true">Day</a>
+						<a class="button date-btn" id="month-btn" aria-selected="false">Month</a>
+						<a class="button date-btn" id="year-btn" aria-selected="false">Year</a>
+					</div>
+				</div>
+				<div class="row">
+					<center><img src="images/chat.jpg" id="chat-img"/></center>
+				</div>
+				<div class="row">
+					<div class="small-4 large-4 columns"><h4>Min</h4><br><h5>50</h5></div>
+					<div class="small-4 large-4 columns"><h4>Max</h4><br><h5>157</h5></div>
+					<div class="small-4 large-4 columns"><h4>Avg</h4><br><h5>81</h5></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<footer>
+		
+	</footer>
+	<script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+	<script src="js/foundation.tabs.js"></script>
+	
+    <script src="js/app.js"></script>
+  </body>
+</html>

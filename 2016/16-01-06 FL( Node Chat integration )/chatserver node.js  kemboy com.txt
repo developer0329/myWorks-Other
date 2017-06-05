@@ -1,0 +1,24 @@
+putty
+root
+S6Vm2aCt
+
+****************************************
+
+
+plesk
+https://h2468260.stratoserver.net:8443/login_up.php3
+admin
+S6Vm2aCt
+
+
+********************************************
+ftp
+Domain name www.kemboy.com
+IP address    81.169.230.35
+Username      kemboy
+Password      Temt40?4
+
+**********************************************
+
+Hostname	h2468260.stratoserver.net
+IP address	81.169.230.35

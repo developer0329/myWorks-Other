@@ -1,0 +1,36 @@
+body {
+  color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Oswald', sans-serif; 
+}
+
+.progressBar {
+  position: relative;
+  width: 95%;
+  height: 20px;
+  margin: 20px auto;
+  border: 2px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-right: 4px;
+}
+
+.progressBar div {
+  position: relative;
+  height: 16px;
+  background-color: #8fc893;
+  margin: 2px;
+  border-radius: 10px;
+}
+
+.progressBar .progressText {
+  position: absolute;
+  margin: 0 auto;
+  top: -2px;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  color: black;
+}
